@@ -260,6 +260,7 @@ type VersionOptions = {
   hasPublishScript?: boolean;
   prBodyMaxCharacters?: number;
   branch?: string;
+  releaseBranch?: string;
 };
 
 type RunVersionResult = {
@@ -277,8 +278,9 @@ export async function runVersion({
   hasPublishScript = false,
   prBodyMaxCharacters = MAX_CHARACTERS_PER_MESSAGE,
   branch = github.context.ref.replace("refs/heads/", ""),
+  releaseBranch,
 }: VersionOptions): Promise<RunVersionResult> {
-  let versionBranch = `changeset-release/${branch}`;
+  let versionBranch = releaseBranch ?? `changeset-release/${branch}`;
 
   let { preState } = await readChangesetState(cwd);
 

@@ -43,6 +43,9 @@ inputs:
   branch:
     description: Sets the branch in which the action will run. Default to `github.ref_name` if not provided
     required: false
+  releaseBranch:
+    description: Overrides the name of the release branch. Defaults to `changeset-release/${branch}`
+    required: false
 outputs:
   published:
     description: A boolean value to indicate whether a publishing is happened or not
